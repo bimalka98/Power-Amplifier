@@ -1,52 +1,39 @@
-# Prerequisites
-*.d
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Created by https://www.toptal.com/developers/gitignore/api/altium,ltspice
+# Edit at https://www.toptal.com/developers/gitignore?templates=altium,ltspice
 
-# Linker output
-*.ilk
-*.map
-*.exp
+### Altium ###
+# Previews Folders
+**/__Previews/
 
-# Precompiled Headers
-*.gch
-*.pch
+# History Folders
+**/History/*
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# Project Logs
+Project\ Logs*/
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Project Outputs
+Project\ Outputs*/
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Auto-conversion notices
+*.PcbDoc.htm
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# Access lock file for dbLib sources
+**/*.ldb
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+
+### LTspice ###
+# gitignore template for LTspice
+# website: https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html
+
+# Logfile
+*.log
+
+# Simulation Outputs
+*.raw
+*.fft
+
+# Netlist
+*.net
+
+# End of https://www.toptal.com/developers/gitignore/api/altium,ltspice
