@@ -1,0 +1,140 @@
+\documentclass[a4paper,11pt]{article}%,twocolumn
+\input{settings/packages}
+\input{settings/page}
+\input{settings/jupyter}
+\newcommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
+\usepackage[siunitx, RPvoltages]{circuitikz}
+
+
+\begin{document}
+	\begin{center}
+		{\large \textbf{ASSIGNMENT 02 – AC Analysis}}\\
+		Thalagala B.P.\hspace{0.5cm} 180631J 
+	\end{center}
+	\hrule
+
+%small-signal AC behavior
+%vin has zero source resistance
+%neglect the small-signal output resistances ro1 and ro2 of the transistors Q1 and Q2.
+%423 microelectronics Chapter 6 Bipolar Junction Transistors (BJTs)
+%6.5.4 Voltage Gain 408
+
+\section*{Q1}
+
+\paragraph*{Suitable transistor model for $Q_1$}: \textit{Hybrid-$\pi$ model}, as there is no resistor connected to the emitter terminal of the ac equivalent circuit.
+ 
+\paragraph*{Suitable transistor model for $Q_2$}: \textit{T model}, as there is a resistor($R_L$)  connected to the emitter terminal and this will appear in series with the resistance in the emitter terminal (T model's $r_e$)  and they can be added easily to get a single resultant resistance which makes the analysis considerably easy.
+
+\section*{Q2}
+In the following figure transconductance, $g_m = I_{C_1}/{V_T}$, where $V_T$ is the thermal equivalent voltage and $I_{C_1}$ is the DC collector current of the $Q_1$ transistor. Moreover $\alpha i_e$ is the same as $\beta_2.i_{b_2}$ where $\beta_2$ is the DC current-gain of the $Q_2$ transistor.
+
+\begin{figure}[!h]
+	\centering
+	\begin{circuitikz}[american, voltage shift=-1]
+		\draw[thick] (-1,0) to[sV, l=$v_{in}$] (-1,6) to[short, -*] (1,6)
+		 to[R=$R_{B_1}\parallelsum R_{B_2}$, v= $v_{in}$ ] (1,0) -- (-1,0);
+		 
+		 \draw[thick] (1,6) to[short,  i>=$i_{b_1}$] (4.5,6) to[R=$r_{\pi}$, v=$v_{\pi}$]
+		 (4.5,0) to[short, -*] (1,0);
+		 
+		 \draw[thick] (4.5,0) -- (7,0);
+		 
+		 \draw[thick] (7,0)  to[I, l=$g_mv_{{\pi}}$, invert] (7,6) to[short, -*] (9,6)
+		 to[R=$R_{C_1}$, v=$v_{o_1}$] (9,0) to[short, i<=$i_{o_1}$] (7,0);
+		 
+		 \draw[thick] (6,0) node[ground]{};
+		 
+		 \draw[thick] (9,6) to[short, -*] (11,6) to [R=$R_{B_3}\parallelsum R_{B_4}$, v=$v_{in_2}$] (11,0) to[short, -*] (9,0);
+		 
+		 \draw[thick] (11,6) to[short, -*, i>=$i_{b_2}$] (13.5,6) to[R=$r_e$, i=$i_e$] (13.5,3) to[R=$R_L$, v=$v_O$] (13.5,0) to[short, -*](11,0);
+		 
+		 \draw[thick] (13.5,6) to[I, l=$\alpha i_e$, invert] (13.5,9) --(15.5,9)--(15.5,0)--(13.5,0);
+		 
+		 \draw[blue, ultra thick, dashed] (10,8) -- (10,-2);
+		 
+	\end{circuitikz}
+\caption{Small-Signal Equivalent Circuit for the given Schematic}
+\end{figure}
+
+
+\section*{Q3}
+
+Let the resistance seen at the base of the $Q_2$ be $R_{ib}$ and the voltage at the base be $v_{in_2}$. Since $i_{e} = i_{b_2}+i_{c_2}$ which simplifies into $i_{e} = i_{b_2}+ \beta_2.i_{b_2} = \left(\beta_2+1\right). i_{b_2}=i_e$. Therefore,
+
+ \[\begin{split}
+ R_{ib} &= \frac{v_{in_2}}{i_{b_2}}\\
+ &=\frac{\left(r_e+R_L\right).i_e}{i_e/ (\beta_2+1)}\\
+ &=\left(\beta_2+1\right)\left(r_e+R_L\right)
+  \end{split} 
+ \]
+
+This $R_{ib}$ is in parallel with the $\left( R_{B_3} \parallelsum R_{B_4}\right)$. Therefore the input resistance of stage 2 ($R_{in_2}$) can be written as follows.
+\begin{equation}
+	\begin{split}
+	R_{in_2} &=\left( R_{B_3} \parallelsum R_{B_4}\right) \parallelsum  R_{ib}\\
+	&=\left( R_{B_3} \parallelsum R_{B_4}\right) \parallelsum \left[\left(\beta_2+1\right)\left(r_e+R_L\right)\right]	
+	\end{split}
+	\label{rin2}
+	\end{equation}
+
+
+\section*{Q4}
+Let the voltage gain of stage 2 of the amplifier be $\frac{v_O}{v_{in_2}}$, then by substituting $v_O = v_{in_2}.\frac{R_L}{r_e+R_L}$ (obtained through voltage dividing),
+
+\begin{equation}
+	\begin{split}
+		\frac{v_O}{v_{in_2}} &= \frac{v_{in_2}.\frac{R_L}{r_e+R_L}}{v_{in_2}}\\
+		&=\frac{R_L}{r_e+R_L}
+	\end{split}
+\label{q4}
+\end{equation}
+
+
+\section*{Q5}
+%6.8.2 The Common-Emitter (CE) Amplifier 455
+Stage 2 act as an external load in the point of view of the stage 1 and the related resistance is given by the Eq.\eqref{rin2}. This make the total output resistance(say $R_{o_1}$) of the stage 1 to be as follows.
+
+\[
+R_{o_1} = R_{C_1} \parallelsum R_{in_2}
+\]
+
+
+Therefore output voltage $v_{o_1}$ of the stage 1 can be written as follows. Minus sign indicates that the voltage drop is measured in the opposite direction as illustrated in the figure, rather than the actual direction of the voltage drop. Moreover it implies the 180 degree phase shift of the output signal of the stage 1 with respect to the input signal.
+
+\[
+\begin{split}
+v_{in_2} = v_{o_1} &= -i_{o_1}.R_{o_1} \\
+& = -g_m.v_{\pi}.R_{o_1}\\
+&= -g_m.v_{\pi}.\left( R_{C_1} \parallelsum R_{in_2} \right)\\	
+\end{split}
+\]
+
+
+
+Since the $v_{in}$ has zero internal resistance  $v_{in} = v_{\pi}$. Then the above expression can be rearranged as follows to get the voltage gain of stage 1 of the amplifier.
+
+
+\begin{equation}
+	\begin{split}
+		v_{in_2} &= -g_m.v_{\pi}.\left( R_{C_1} \parallelsum R_{in_2} \right)\\
+		&= -g_m.v_{in}.\left( R_{C_1} \parallelsum R_{in_2} \right)\\
+		\frac{v_{in_2}}{v_{in}} & = -g_m.\left( R_{C_1} \parallelsum R_{in_2} \right)
+	\end{split}
+\label{q5}
+\end{equation}
+
+\section*{Q6}
+
+Let the overall gain of the circuit be $A_v = v_O/v_{in}$. This overall gain of the system can be obtained by multiplying voltage gains of the two stages which we derived previously. Therefore, by multiplying the Eq.\eqref{q4} with the Eq.\eqref{q5} we can get the following expression for the $A_v$.
+
+\[
+\begin{split}
+A_v &= \frac{v_O}{v_{in}}\\
+&= 	\frac{v_O}{v_{in_2}}.\frac{v_{in_2}}{v_{in}}\\
+&= \left[\frac{R_L}{r_e+R_L}\right].\left[-g_m.\left( R_{C_1} \parallelsum R_{in_2} \right)\right]\\
+&= -\frac{R_L}{r_e+R_L}.g_m.\left( R_{C_1} \parallelsum R_{in_2} \right)\\
+&= -\frac{R_L}{r_e+R_L}.g_m. \left\{ R_{C_1} \parallelsum \left[ \left( R_{B_3} \parallelsum R_{B_4}\right) \parallelsum \left(\left(\beta_2+1\right)\left(r_e+R_L\right)\right) \right] \right\} \hspace{1cm} (from~Q3) 
+\end{split}
+\]
+
+\end{document}
