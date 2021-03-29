@@ -1,0 +1,238 @@
+\documentclass[a4paper,11pt]{article}%,twocolumn
+\input{settings/packages}
+\input{settings/page}
+\input{settings/jupyter}
+\newcommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
+\usepackage[siunitx, RPvoltages]{circuitikz}
+
+
+\begin{document}
+	\begin{center}
+		{\large \textbf{ASSIGNMENT 03 – Power Analysis}}\\
+		Thalagala B.P.\hspace{0.5cm} 180631J 
+	\end{center}
+	\hrule
+
+%here there is no limitation on the size of vBE, and thus these models are referred to as large-signal models. 358
+%6.2.2 Graphical Representation of Transistor Characteristics
+
+\section*{Q1}
+
+
+In the following figure  $i_{C_2} = \alpha i_{E_2}$ is the same as $i_{C_2} = \beta_2.i_{B_2}$ where $\beta_2$ is the DC current-gain of the $Q_2$ transistor while $V_T$ is the thermal equivalent voltage. Moreover the relationship between the $i_{C_2}$ and the $v_{BE_2}$ can be written as follows, where $I_{s_2}$ is the saturation current of the $Q_2$ transistor.
+\[
+i_{C_2} = \alpha i_{E_2} = I_{s_2}.e^{v_{BE_2}/V_T}
+\]
+
+
+\begin{figure}[!h]
+	\centering
+	\begin{circuitikz}[american, voltage shift=0.5]
+
+		
+		 \draw[thick] (13.5,6)   to[short, -o, i<=$i_{B_2}$](11,6) node[anchor=east]{$v_{in_2} = \overline{V_P}.\sin(\omega.t) $};
+		 
+		 \draw[thick] (13.5,6) to[D, l=$D$, , i=$i_{E_2}$, v=$v_{BE_2}$ ] (13.5,3) to[R=$R_L$, v=$v_O$] (13.5,0)node[ground]{} ;
+		 
+		 \draw[thick] (13.5,9) node[vcc](VCC){$V_{CC}$}  to[I, l=$\alpha i_{E_2}$, i>=$i_{C_2}$ ] (13.5,6);
+		 
+	
+	\end{circuitikz}
+\caption{AC Large-Signal Equivalent Circuit for the Output Leg}
+\end{figure}
+\hrule
+\section*{Q2}
+%---------------------------------------------------------------------------
+Relationship between the $v_{in_2}$ and time($t$) is defined as $v_{in_2} = \overline{V_P}.\sin(\omega.t)$, where $\overline{V_P}$ is the peak amplitude and $\omega$ is the angular velocity.
+
+\begin{figure}[!h]
+	\centering
+\includegraphics[scale=0.1]{figures/modvin2}
+\caption{$v_{in_2}$ vs time}
+\end{figure}
+
+
+%---------------------------------------------------------------------------
+\pagebreak
+Relationship between the $v_{L}(v_{O})$ and time can be derived as follows.
+Where $V_p$ is the peak amplitude of the ac component of the $v_O$. Since the voltage gain of stage 2 of the amplifier is $R_L/\left[ r_e+R_L \right]$ there will be no phase shift between $v_{in_2}$ and the $v_O$. Therefore the ac component of the $v_O$ can be directly written as follows.
+\[
+\begin{split}
+	v_L = v_O &= i_{E_2}.R_L\\
+	&= \left( I_{E_2} + i_{e_2} \right).R_L\\
+	& = I_{E_2}.R_L + i_{e_2}.R_L\\
+	&=  I_{E_2}.R_L + V_p\sin(\omega.t)\\
+	&= dc~component + ac~component
+\end{split}
+\]
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.11]{figures/modvO}
+	\caption{$v_{L}~or~v_{O}$ vs time}
+\end{figure}
+
+%---------------------------------------------------------------------------
+An expression for the $i_{E_2}$ can be derived as follows. Where $I_p$ is the peak ac current component through $R_L$. Here again $v_O$ and $i_{e_2}$ will be in-phase sinusoidal signals since resistor is a linear device and $i_{e_2}$ can be expressed as a function of $sine$ as follows.
+\[
+\begin{split}
+	i_{E_2} &= I_{E_2} + i_{e_2}\\
+	&= I_{E_2} + \frac{V_p}{R_L}.\sin(\omega.t)\\
+	& = I_{E_2} + I_p.\sin(\omega.t)\\
+	&= dc~component + ac~component
+\end{split}
+\]
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.11]{figures/modiE2}
+	\caption{$i_{E_2}$ vs time}
+\end{figure}
+
+%---------------------------------------------------------------------------
+\pagebreak
+Relationship between $i_{B_2}$ and $i_{E_2}$ can be written as follows.
+$i_{E_2} = \left( \beta_2 +1 \right).i_{B_2}$ where $\beta_2$ is the DC current-gain of the $Q_2$ and $I_{B_p}$ is the peak amplitude of the ac component of the $i_{B_2}$. 
+
+Therefore,
+
+\[
+\begin{split}
+\left( \beta_2 +1 \right).i_{B_2} & = 	i_{E_2}\\
+i_{B_2} & = \frac{1}{\beta_2+1}.i_{E_2}\\
+& = \frac{1}{\beta_2+1}.\left[ I_{E_2} + I_p.\sin(\omega.t) \right]\\
+& = \frac{1}{\beta_2+1}.I_{E_2} + \frac{1}{\beta_2+1}.I_p.\sin(\omega.t)\\
+& = I_{B_2} + I_{B_p}.\sin(\omega.t)\\
+&= dc~component + ac~component
+\end{split}
+\]  
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.1]{figures/modiB2}
+	\caption{$i_{B_2}$ vs time}
+\end{figure}
+
+
+
+
+%---------------------------------------------------------------------------
+By applying Kirchhoff's voltage low to the \textbf{\textit{collector-emitter circuit}}, $V_{CC} = v_{CE_2} + i_{E_2}.R_L$ and through rearranging this following expression can be obtained.
+\[
+\begin{split}
+v_{CE_2} &=	V_{CC} - i_{E_2}.R_L\\
+	&= V_{CC} -\left( I_{E_2} + i_{e_2} \right).R_L\\
+& = V_{CC} - I_{E_2}.R_L - i_{e_2}.R_L\\
+&= \left(V_{CC} - I_{E_2}.R_L \right) - V_p\sin(\omega.t)\\
+&= dc~component + ac~component
+\end{split}
+\]
+
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.1]{figures/modvCE2}
+	\caption{$v_{CE_2}$ vs time}
+\end{figure}
+
+\pagebreak
+\section*{Q3}
+
+Derivation of the expressions was done in the previous part.
+
+\[v_{CE_2}= \left(V_{CC} - I_{E_2}.R_L \right) - V_p\sin(\omega.t)\]
+
+DC component = $\left(V_{CC} - I_{E_2}.R_L \right)$\\
+AC component = $- V_p\sin(\omega.t)$
+
+
+\[ i_{E_2} = I_{E_2} + I_p.\sin(\omega.t)\]
+DC component = $I_{E_2}$\\
+AC component = $I_p.\sin(\omega.t)$
+\vspace{5mm}
+
+\hrule
+\section*{Q4}
+Let the average power delivered to the load $R_L$ be $P_L$ and the period of the $sine$ waveform be $T = \frac{2\pi}{\omega}$.
+
+\[
+\begin{split}
+	P_L &= \frac{1}{T} .\int_0^T (i_{E_2})^2.R_L ~dt\\
+	& = \frac{1}{T} .\int_0^T (I_{E_2} + I_p.\sin(\omega.t))^2.R_L ~dt\\
+	&=  \frac{1}{T} .\int_0^T \left[  (I_{E_2})^2 + (I_p.\sin(\omega.t))^2 + 2.I_{E_2}.I_p.\sin(\omega.t) \right].R_L~dt\\
+	&=  \frac{1}{T} .\left[ \int_0^T (I_{E_2})^2.R_L~dt + 	 \int_0^T 2.I_{E_2}.I_p.\sin(\omega.t).R_L~dt + \int_0^T \frac{I_p^2.R_L}{2}~dt - \int_0^T \frac{I_p^2.R_L.cos(2.\omega.t)}{2}~dt \right]
+\end{split}
+\]
+Over a period the average power of a sinusoidal signal is zero. Therefore the second and the fourth terms vanish.
+\[\therefore P_L = I_{E_2}^2.R_L + \frac{I_p^2.R_L}{2}\]
+
+Since $ V_p = I_pR_L$, the above expression can also be written as follows.
+\[ 
+\begin{split}
+	P_L &= I_{E_2}^2.R_L + \frac{V_p^2}{2.R_L}\\
+	& = P_{L,DC} + P_{L,AC}
+\end{split}
+ \]
+
+
+
+\hrule
+\section*{Q5}
+Let the average power delivered to the output leg of the amplifier from DC power supply be $P_{DC}$. Note that the total current through the output leg is approximated to be $i_{E_2}$. Therefore,
+\[
+\begin{split}
+	P_{DC} &= \frac{1}{T} .\int_0^T i_{E_2}.V_{CC}~dt\\
+	& = \frac{1}{T} .\int_0^T (I_{E_2} + I_p.\sin(\omega.t)).V_{CC}~dt\\
+& = \frac{1}{T} .\left[ \int_0^T I_{E_2}.V_{CC}~dt + \int_0^T I_p.\sin(\omega.t).V_{CC}~dt \right] \\	
+\end{split}
+\]
+As mentioned previously over a period the average power of a sinusoidal signal is zero. Therefore the second term vanishes.
+\[\therefore P_{DC} = I_{E_2}.V_{CC} \]
+
+
+
+\section*{Q6}
+
+Assume the \textbf{\textit{Class A operation}} of the transistor $Q_2$. Then at the bias point $V_{CE_2} = V_{CC}/2$ and 
+\[\therefore I_{E_2} = \frac{V_{CE_2}}{R_L} = \frac{ V_{CC}/2}{R_L} = \frac{V_{CC}}{2.R_L}\]
+
+\[
+\begin{split}
+\therefore	P_{DC} &= I_{E_2}.V_{CC}\\
+	& = \frac{V_{CC}}{2.R_L}.V_{CC}\\
+	&= \frac{V_{CC}^2}{2.R_L}
+\end{split}
+\]
+
+Let the efficiency of the output leg be $\eta_{output~leg}$,
+\[
+\begin{split}
+\eta_{output~leg} &= \frac{AC~Power~at~the~load(P_{out})}{Input~Power(P_{in})}\\ &= \frac{P_{L,AC}}{P_{DC}}\\
+&= \frac{V_p^2}{2.R_L} \div \frac{V_{CC}^2}{2.R_L}\\
+& = \frac{V_p^2}{V_{CC}^2}
+\end{split}
+\]
+\hrule
+\section*{Q7}
+
+Let overall efficiency of the amplifier be $\eta_{overall}$,
+total power consumed by the amplifier circuit be $P_{total}$ and total current drained by the amplifier circuit from the source be $I_{total}$. Then from the Question 6 of Assignment 01- DC Analysis,
+\[
+\begin{split}
+	P_{total} &= V_{CC}.I_{total}\\
+	&= V_{CC}. \left[  I_{R_{B_1}}+  I_{R_{B_3}}+ I_{C_1}+ I_{C_2}\right]
+\end{split}
+\]
+
+Therefore, 
+\[
+\begin{split}
+\eta_{overall} &=\frac{AC~Power~at~the~load(P_{out})}{Total~ Input~Power(P_{total})}\\ 
+&= \frac{P_{L,AC}}{P_{total}}\\
+&= \frac{V_p^2}{2.R_L} \div  \left[ V_{CC}. \left(  I_{R_{B_1}}+  I_{R_{B_3}}+ I_{C_1}+ I_{C_2}\right) \right] \\
+& = \frac{V_p^2}{2.R_L.V_{CC}. \left(  I_{R_{B_1}}+  I_{R_{B_3}}+ I_{C_1}+ I_{C_2}\right)}
+\end{split}
+\]
+
+
+\end{document}
