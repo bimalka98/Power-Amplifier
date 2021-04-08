@@ -1,0 +1,162 @@
+\documentclass[legalpaper,11pt]{article}%,twocolumn
+\input{settings/packages}
+\input{settings/page}
+\input{settings/jupyter}
+\newcommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
+\usepackage[siunitx, RPvoltages]{circuitikz}
+
+
+\begin{document}
+	\begin{center}
+		{\large \textbf{ASSIGNMENT 04 – Amplifier Design}}\\
+		Thalagala B.P.\hspace{0.5cm} 180631J
+	\end{center}
+	\hrule
+
+\vspace{5mm}
+\textit{Note: The thermal voltage $V_T$ is approximated to be 20 mV in the Assignment and the given set of specifications are given below. }\\
+
+\begin{center}
+	\begin{tabular}{l l}
+Supply voltage $V_{CC}$ &24V DC\\
+Load $R_L$& 16 $\Omega$\\
+Overall voltage gain $A_v = \frac{v_O}{v_{in}}$ &120\\
+Stage 1 output & Maximum voltage swing\\
+Stage 2 output &Class A operation\\
+Transistor 1 current gain $\beta_1$ &100\\
+Transistor 1 BE voltage $V_{BE_1}$& 0.6V\\
+Transistor 2 current gain $\beta_2$& 400\\
+Transistor 2 BE voltage $V_{BE_2}$& 0.5V	\\
+\end{tabular}
+\end{center}
+\hrule
+
+\section*{Q1}
+Let the quiescent emitter current of the output leg be $I_{E_2}$. Since we assume the \textbf{\textit{Class A operation}} of the transistor $Q_2$, the bias point $V_{CE_2} = V_{CC}/2$. 
+\[\therefore I_{E_2} = \frac{ V_{CC}/2}{R_L} = \frac{V_{CC}}{2.R_L} =\frac{24~V}{2.16~ \Omega} = 750~mA
+\]
+\hrule
+\section*{Q2}
+\begin{itemize}
+	\item Collector-emitter current ratio ($\alpha_2$)
+	\[ \alpha_2 = \frac{\beta_2}{\beta_2+1} = \frac{400}{400+1} = 0.9975  \]
+	
+	\item Collector current ($I_{C_2}$)
+	\[ I_{C_2} = \alpha_2.I_{E_2} = 0.9975\times750~mA = 748.1297 ~mA\]
+	
+	\item Transconductance ($g_{m_2}$)
+	\[ g_{m_2} = \frac{I_{C_2}}{V_T} = \frac{748.1297 ~mA}{20~mV} = 37.4065~ S\]
+	
+	\item Intrinsic emitter resistance ($r_{e_2}$)
+	\[ r_{e_2} = \frac{\alpha_2}{g_{m_2}} = \frac{0.9975}{37.4065 ~S} = 0.0267 ~\Omega \]
+\end{itemize}
+\hrule
+\section*{Q3}
+Consider the voltage gain of stage 2 of the amplifier, $\frac{v_O}{v_{in_2}}$. Then,
+\[A_{v_2} =\frac{v_O}{v_{in_2}} =\frac{R_L}{r_{e_2}+R_L} = \frac{16~\Omega}{16+ 0.0267 \Omega} = 0.9983 \]
+\hrule
+\section*{Q4}
+
+Let the base current of $Q_2$ be $I_{B_2}$,
+\[ I_{B_2} = \frac{1}{\beta_2}.I_{C_2}  = \frac{1}{400}\times748.1297 ~mA = 1.8703~mA\]
+
+\hrule
+\section*{Q5}
+
+Since $V_{BB_2} = V_{BE_2} + V_{R_L} = 0.5 + 12  = 12.5 ~V $ and $I_{R_{B_4}} = I_{B_2}/9 = 1.8703~mA/9 = 0.2078 ~mA$,
+
+\[\therefore R_{B_4} = \frac{V_{BB_2}}{I_{R_{B_4}}} = \frac{12.5~V}{ 0.2078 ~mA} = 60.15~k\Omega \]
+
+Therefore voltage drop across $R_{B_3}, V_{R_{B_3}} = 24- 12.5 = 11.5~V$ and $I_{R_{B_3}} = I_{B_2}+I_{R_{B_4}} = I_{B_2}+I_{B_2}/9 = \frac{10}{9}.I_{B_2} = \frac{10}{9}\times1.8703~mA = 2.078~mA$.
+
+\[\therefore R_{B_3} = \frac{V_{R_{B_3}}}{I_{R_{B_3}}} = \frac{11.5~V}{2.078~mA} =5.5338 ~k\Omega \]
+
+
+\section*{Q6}
+From the Question 03 of the Assignment 02, input resistance of stage 2 ($R_{in_2}$) can be written as follows.
+
+\[
+\begin{split}
+	R_{in_2} &=\left( R_{B_3} \parallelsum R_{B_4}\right) \parallelsum \left[\left(\beta_2+1\right)\left(r_{e_2}+R_L\right)\right]\\
+	& = \left( 5.5338 ~k\Omega \parallelsum 60.15~k\Omega  \right) \parallelsum \left( (400+1)\times(16+0.0267) \right)	\\
+	& = 5.0676~k\Omega \parallelsum \left( (400+1)\times(16+0.0267) \right)	\\
+	& = 2833.3954 ~\Omega
+\end{split}
+\]
+\hrule
+\section*{Q7}
+\begin{itemize}
+	\item Collector current ($I_{C_1}$),
+	\[ I_{C_1} = \frac{1}{500}\times I_{C_2} = \frac{1}{500}\times 748.1297 ~mA = 1.4963~mA \]
+	
+	\item Transconductance ($g_{m_1}$)
+	\[ g_{m_1} = \frac{I_{C_1}}{V_T} = \frac{1.4963 ~mA}{20~mV} = 0.0748~ S\]
+\end{itemize}
+\hrule
+\section*{Q8}
+Since the Overall voltage gain $A_v = \frac{v_O}{v_{in}} =  120$ and the voltage gain of stage 2 of the amplifier is $A_{v_2} = 0.9983$, the required gain of stage 1 is,
+\[ A_{v_1} = \frac{A_v}{A_{v_2}} = 120/0.9983=  120.2043\]
+
+From the Question 05 of the Assignment 02, voltage gain of stage 1 of the amplifier cam be written as follows. And therefore $R_{C_1}$ can be directly calculated from it.
+
+\[
+	\begin{split}
+	-A_{v_1} & = -g_{m_1}.\left( R_{C_1} \parallelsum R_{in_2} \right)\\
+	120.2043&= 0.0748 \left( R_{C_1} \parallelsum   2833.3954 ~\Omega \right)\\
+	\therefore R_{C_1} & = 3712.7730~ \Omega
+\end{split}
+\]
+
+Since Stage 1 output is specified to have a maximum voltage swing, then $V_{CE_2} = V_{CC}/2 = 12~V$. By using the result of Question 02 of the Assignment 01 and using the fact that $I_{E_1} = \frac{\beta_1+1}{\beta_1}.I_{C_1}$
+\[\begin{split}
+V_{CC} &= I_{C_1}.R_{C_1} + V_{CE_1} + I_{E_1}.R_{E_1}\\
+I_{E_1}.R_{E_1}& = 	V_{CC} - V_{CE_1} - I_{C_1}.R_{C_1}\\
+\frac{\beta_1+1}{\beta_1}.I_{C_1}.R_{E_1}& = 	V_{CC} - V_{CE_1} - I_{C_1}.R_{C_1}\\
+R_{E_1}& = \frac{\beta_1}{\beta_1+1} \times	\left[ \frac{V_{CC} - V_{CE_1} - I_{C_1}.R_{C_1}}{I_{C_1}} \right]\\
+& = \frac{100}{100+1} \times	\left[ \frac{24~V - 12~V - 1.4963~mA\times3712.7730~ \Omega}{1.4963~mA} \right]\\
+&= 4264.3655 ~\Omega
+\end{split}
+\]
+\hrule
+\section*{Q9}
+Let the base current of $Q_1$ be $I_{B_1}$,
+\[ I_{B_1} = \frac{1}{\beta_1}.I_{C_1}  = \frac{1}{100}\times1.4963~mA =14.963 ~\micro A \]
+Since the design decision has made to make $I_{R_{B_2}} = I_{B_1}/9 = 14.963 ~\micro A/9 = 1.6626 ~\micro A$ and 
+ $V_{BB_1} = V_{BE_1} + V_{R_{E_1}} = V_{BE_1}  + I_{E_1}.R_{E_1}  = 0.6 + 6.4446 ~V =7.0446 ~V $. 
+\[\therefore R_{B_2} = \frac{V_{BB_1}}{I_{R_{B_2}}} = \frac{7.0446~V}{1.6626 ~\micro A} = 4.2374~M\Omega \] %4237404.3
+
+Therefore voltage drop across $R_{B_1}, V_{R_{B_1}} = 24- 7.0446 = 16.9554~V$ and
+ $I_{R_{B_1}} = I_{B_1}+I_{R_{B_2}} = I_{B_1}+I_{B_1}/9 = \frac{10}{9}.I_{B_1} = \frac{10}{9}\times14.963 ~\micro A = 16.6256~\micro A$.
+
+\[\therefore R_{B_1} = \frac{V_{R_{B_1}}}{I_{R_{B_1}}} = \frac{16.9554~V}{16.6256~\micro A} =1.0198 ~M\Omega \]%1019859.5700000002
+
+
+\section*{Q10}
+
+From Question 04 of the Assignment 03, where $V_p$ is the peak value of the AC signal at the load.
+\[
+\begin{split}
+	P_{L,AC} & =  \frac{V_p^2}{2.R_L}\\
+	4 W & = \frac{V_p^2}{2\times 16}\\	
+	\therefore V_p& = 8\sqrt{2} = 11.3137~ V
+\end{split}
+\]
+Since the total gain of the amplifier is 120, peak value of the AC signal at the input is $V_p/120 = \frac{8\sqrt{2}}{120} = \frac{\sqrt{2}}{15} = 94.28~mV$. Assume $v_{in}$ is a pure sinusoidal signal with an angular velocity of $\omega$ then it can be written as,
+
+\[ \therefore v_{in} = 94.28\sin\left(\omega.t\right)~mV \]
+
+\hrule
+\section*{Q11}
+Let corresponding peak voltage at the $R_L$ to a small signal input having a peak voltage of $85 ~mV$ be $V_p$. Then, 
+\[ V_p = 85~mV \times 120 = 10.2 ~V\]
+Form the  Question 06 of the Assignment 03,  efficiency of the output leg  ($\eta_{output~leg}$),
+\[
+\begin{split}
+	\eta_{output~leg} & = \frac{V_p^2}{V_{CC}^2}\\
+	& = \frac{10.2^2}{24^2}\\
+	&= 0.180625
+\end{split}
+\]
+
+\[\therefore \eta_{output~leg} = 18.0625~\% \]
+\end{document}
