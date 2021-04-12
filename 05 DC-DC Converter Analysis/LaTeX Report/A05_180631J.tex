@@ -1,0 +1,243 @@
+\documentclass[a4paper,11pt]{article}%,twocolumn
+\input{settings/packages}
+\input{settings/page}
+\input{settings/jupyter}
+\newcommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
+\usepackage[siunitx, RPvoltages]{circuitikz}
+
+
+\begin{document}
+	\begin{center}
+		{\large \textbf{ASSIGNMENT 05 – Switching Circuits}}\\
+		Thalagala B.P.\hspace{0.5cm} 180631J 
+	\end{center}
+	\hrule
+
+%small-signal AC behavior
+%vin has zero source resistance
+%neglect the small-signal output resistances ro1 and ro2 of the transistors Q1 and Q2.
+%423 microelectronics Chapter 6 Bipolar Junction Transistors (BJTs)
+%6.5.4 Voltage Gain 408
+
+\section*{Q1: $for~0\leq t < DT_s$}
+
+\begin{figure}[!h]
+	\centering
+\begin{circuitikz}[american] %, voltage shift=-1
+	\ctikzset{inductors/scale=1.5, inductor=cute}
+	\draw[thick] (0,0)to[V, l=$V_g$] (0,3) to [L, ,l=$L$, i>=$i_{L}$, v=$v_{L}$] (3,3) to[normal closed switch, l=$S_1$, i>=$i_{S_1}$] (3,0) -- (0,0);
+	\draw[thick] (3,3) to[capacitor,l=$C$, i>=$i_{C}$,v=$v_{C}$] (6,3);
+	\draw[thick] (6,3) to[normal open switch, l=$S_2$,v=$v_{S_2}$] (6,0) --(3,0);
+	\draw[thick] (6,3) to[normal closed switch, l=$S_3$, i<=$i_{S_3}$](9,3) ;
+	\draw[thick] (9,3) to[capacitor,l=$C_o$, i>=$i_{C_o}$,v=$v_{C_o}$] (9,0)--(6,0);
+	\draw[thick](9,3) --(12,3) to[R=$R_o$, v=$V_o$, i>=$I_{o}$](12,0) -- (9,0);
+\end{circuitikz}
+\caption{Circuit when S1, S3 are turned -ON and	S2 is turned -OFF}
+	\label{fc}
+\end{figure}
+
+\hrule
+\section*{Q2: $for~DT_s \leq t < T_s$}
+
+\begin{figure}[!h]
+	\centering
+	\begin{circuitikz}[american] %, voltage shift=-1
+		\ctikzset{inductors/scale=1.5, inductor=cute}
+		\draw[thick] (0,0)to[V, l=$V_g$] (0,3) to [L, ,l=$L$, i>=$i_{L}$, v=$v_{L}$] (3,3) to[normal open switch, l=$S_1$, v = $v_{S_1}$] (3,0) -- (0,0);
+		\draw[thick] (3,3) to[capacitor,l=$C$, i>=$i_{C}$,v=$v_{C}$] (6,3);
+		\draw[thick] (6,3) to[normal closed switch, l=$S_2$, i>=$i_{S_2}$] (6,0) --(3,0);
+		\draw[thick] (9,3) to[normal open switch, l=$S_3$, v = $v_{S_3}$](6,3) ;
+		\draw[thick] (9,3) to[capacitor,l=$C_o$, i>=$i_{C_o}$,v=$v_{C_o}$] (9,0)--(6,0);
+		\draw[thick](9,3) --(12,3) to[R=$R_o$, v=$V_o$, i>=$I_{o}$](12,0) -- (9,0);
+	\end{circuitikz}
+	\caption{Circuit when S1, S3 are turned -OFF and S2 is turned -ON}
+	\label{sc}
+\end{figure}
+\hrule
+\section*{Q3}
+Three main assumptions which can be used to simplify the analysis of a switching	circuit.
+\begin{enumerate}
+	\item \textbf{Steady state operation}: At each cycle the operation of the circuit is identical.
+	\item \textbf{Small ripple approximation}: Therefore $ v_o(t) = V_o + v_{ripple}(t)$ is simplified into $v_o(t) = V_o$ using the fact that $| v_{ripple}(t)| \ll V_o$ which is caused by non-ideal filtering.
+%		\item $ i_o(t) = I_o + i_{ripple}(t)$ is simplified in to  $i_o(t) = I_o$ using $| i_{ripple}(t)| \ll I_o$
+
+	\item \textbf{Sufficiently large capacitance}: Throughout the operation capacitors will maintain constant voltages.
+\end{enumerate}
+
+\pagebreak
+\section*{Q4}
+
+\subsection*{Consider the operation of the circuit for $0\leq t < DT_s$}
+
+\subsubsection*{* Associated Voltages}
+Since the $S_1$ switch is ON, positive and negative terminals of the source are directly connected to the positive and negative terminals of the inductor($L$) respectively.
+\begin{equation}
+	 v_L =  V_g
+	 \label{first}
+\end{equation}
+
+
+Since the $S_3$ switch is also ON, positive terminal of the capacitor $C$ is connected to the negative terminals of the capacitor $C_o$ and resistor $R_o$. While negative terminal of the capacitor $C$ is connected to the positive terminals of the capacitor $C_o$ and resistor $R_o$. In addition to that as $C_o$ and $R_o$ are in parallel $v_{C_o} = V_o$.\\
+
+Using the Kirchhoff voltage Low to that loop,
+\[	v_C + V_o = 0 \hspace{2cm} \therefore v_C = -V_o \]
+
+%\subsubsection*{* Associated Currents}
+%Using Kirchhoff current Low, to the nodes,
+%
+%\begin{equation}
+%	i_L = i_{S_1}+i_C
+%\end{equation}
+%
+%\begin{equation}
+%	i_C = -i_{S_3}
+%\end{equation}
+%
+%\begin{equation}
+%	-i_{S_3} = i_{C_0} + I_o
+%\end{equation}
+%
+%\[\therefore i_L = i_{S_1} + i_{C_0} + I_o\]
+
+\subsection*{Consider the operation of the circuit for $DT_s \leq t < T_s$}
+
+\subsubsection*{* Associated Voltages}
+Using the Kirchhoff voltage Low,
+\[ V_g = v_L + v_C \]
+
+Since we assume sufficiently large capacitance, change in $v_C$ is negligible from the previous state of the circuit.
+\[\therefore  V_g = v_L + (-V_o) \]
+Rearranging,
+\begin{equation}
+	v_L = V_g + V_o
+	\label{second}
+\end{equation}
+
+From equations \eqref{first} and \eqref{second},
+\begin{equation*}
+	v_L = \begin{cases}
+		V_g & for~0\leq t < DT_s\\
+		V_g + V_o & for~DT_s \leq t < T_s
+	\end{cases}
+\end{equation*}
+
+As we are analyzing a switching circuit which has the ability to invert and step-up its supply voltage, $|V_g| < |V_o| ~and~ V_o < 0 $. Which implies $V_g + V_o < 0$.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.15]{figures/vl}
+	\caption{Inductor voltage $v_L(t)$}	
+\end{figure}
+\pagebreak
+Since voltage drop across an inductor is related to the current through it according the following differential equation, graph of the $i_L$ can be directly deduced from the graph of the $v_L$.
+\[v_L = L.\frac{d~i_L}{dt}\]
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.15]{figures/il}	
+	\caption{Inductor current $i_L(t)$}
+\end{figure}
+
+In the above figure $I_L$ denotes the average inductor current.\\
+
+\hrule
+\section*{Q5}
+Using inductor volt-second balance,
+\[
+\begin{split}
+	<V_L(t)> = 0 = & \frac{1}{T_s}.\int_{0}^{T_s} V_L(t) ~dt\\
+	&=\int_{0}^{DT_s} V_L(t) ~dt + \int_{DT_s}^{T_s}V_L(t) ~dt\\
+	&=\int_{0}^{DT_s} V_g  ~dt + \int_{DT_s}^{T_s} V_g + V_o ~dt\\
+	&= V_g.DT_s +(V_g + V_o).(T_s - DT_s)\\
+	&= V_g.D +(V_g + V_o).(1 - D)\\
+	&= V_g + V_o.(1 - D) 
+\end{split}
+\]
+
+\[\therefore V_o = -\frac{V_g}{1-D}\]
+
+\hrule
+\section*{Q6}
+
+
+\subsection*{S1}
+\begin{itemize}
+	\item ON Current($i_{S_1}$)	
+	
+	As described below in the part ``\textbf{S3}'', $i_{S_3}$ is positive in the marked direction. Therefore according to the Kirchhoff Current Low, $i_C + i_{S_3} = 0$ and it implies $i_C$ is negative in the marked direction(actual direction is the opposite of the marked direction). As $v_L$ is positive $i_L$ is positive in the marked direction. Because of these reasons, according to the K.C.L, $i_{S_1} = i_L+(-i_C)$ and it is positive in the marked direction in Fig.\ref{fc}.
+%	From Fig.\ref{fc}, using Kirchhoff Current Low, $i_L = i_C + i_{S_1}$. From the calculations of the  Question 04, $v_C = -V_o$. Since $V_o$ is negative, $v_C$ is positive and therefore $i_C$ is positive. While $S_1$ is ON, $v_L = V_g >0$ and therefore $i_L$ is positive. Consider,  $i_L -i_C =  i_{S_1}$
+	
+	
+	\item Blocking Voltage($v_{S_1}$)
+	
+	From Fig.\ref{sc}, positive and negative terminals of the switch are connected to the positive and negative terminals of the capacitor $C$. Therefore $v_{S_1} = v_C$. 	From the calculations of the  Question 04, $v_C = -V_o$ and $V_o$ is negative. Therefore $v_{S_1}$ is positive.
+	
+\end{itemize}
+
+
+\subsection*{S2}
+\begin{itemize}
+	\item ON Current($i_{S_2}$)	
+	
+ When considering the loop consist of the Source,inductor, capacitor($C$) and the switch $S_2$ in Fig.\ref{sc}, it is obvious that $i_{S_2}$ is positive in the given direction.
+	
+%	From the calculations of the  Question 04, $v_C = -V_o$. Since $V_o$ is negative, $v_C$ is positive and therefore $i_C$ is positive. As $i_C = i_{S_2}$ from the Kirchhoff current low(Fig. \ref{sc}),  $i_{S_2}$ is also positive.
+	
+	
+	\item Blocking Voltage($v_{S_2}$)
+	
+	From Fig.\ref{fc}, $v_{S_2} = v_{C_o} = V_o $. Since $V_o$ is negative, $v_{S_2}$ is also negative.
+\end{itemize}
+
+
+\subsection*{S3}
+\begin{itemize}
+	\item ON Current($i_{S_3}$)	
+	
+	Since $V_o~and ~v_{C_o}$ are negative in the marked direction, their currents are also in the direction opposite to the marked direction. Therefore according to the Kirchhoff Current Low, $i_{S_3} = -(i_{C_o} + I_o)$. Which results $i_{S_3}$ to be positive in the marked direction in Fig.\ref{fc}.
+%	From Fig.\ref{fc}, using Kirchhoff Current Low, $i_C + i_{S_3} = 0~\therefore i_{S_3} = -i_C$. Since $i_{C}$ is positive in the marked direction, $i_{S_3}$ is positive in the marked direction.
+	
+	\item Blocking Voltage($v_{S_3}$)
+	
+	From Fig.\ref{sc}, $v_{S_3} = V_o$ as positive and negative terminals of the switch are connected to the positive and negative terminals of the $R_o$ respectively. Since $V_o$ is negative, $v_{S_3}$ is also negative.
+	
+\end{itemize}
+
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{c c c c}
+		\textbf{Switch} & \textbf{ON-current} & \textbf{Blocking Voltage} & \textbf{Suitable Semiconductor Device}\\
+		S1& $i_{S_1} >0$& $v_{S_1} > 0$& FET\\
+		S2& $i_{S_2}>0$ & $v_{S_2} < 0$  & Diode\\
+		S3& $i_{S_3}>0$ & $v_{S_3} <0$ & Diode\\
+	\end{tabular}
+	\caption{Summary of the Proposed Semiconductors according to the catalog developed in the class}
+\end{table}
+
+\begin{figure}[!h]
+	\centering
+	\begin{circuitikz}[american] %, voltage shift=-1
+		\ctikzset{inductors/scale=1.5, inductor=cute}
+		\draw[thick] (0,0)to[V, l=$V_g$] (0,3) to [L, ,l=$L$, i>=$i_{L}$, 
+		v=$v_{L}$](3,3);
+		
+		\draw[thick]
+	 (3,1.5) node[nigfete] (nf) {};
+\draw[thick] (nf.D) --(3,3);
+\draw[thick] (nf.S) to[short, i>=$i_{S_1}$](3,0);
+\draw[thick] (nf.G) node[anchor=east] {$G$};
+
+		%\draw   (3,1.5) node[nigfete] (fet) {}
+%		\draw (3,3) to[normal closed switch, l=$S_1$, i>=$i_{S_1}$] 
+\draw[thick] (3,0) -- (0,0);
+		\draw[thick] (3,3) to[capacitor,l=$C$, i>=$i_{C}$,v=$v_{C}$] (6,3);
+		\draw[thick] (6,3) to[D, l=$S_2$,v=$v_{S_2}$, i>=$i_{S_2}$] (6,0) --(3,0);
+		\draw[thick] (9,3) to[D, l=$S_3$, i>=$i_{S_3}$,v=$v_{S_3}$](6,3) ;
+		\draw[thick] (9,3) to[capacitor,l=$C_o$, i>=$i_{C_o}$,v=$v_{C_o}$] (9,0)--(6,0);
+		\draw[thick](9,3) --(12,3) to[R=$R_o$, v=$V_o$, i>=$I_{o}$](12,0) -- (9,0);
+	\end{circuitikz}
+	\caption{Final Switching Circuit with the Proposed Semiconductors: The control signal is supplied to the Gate terminal($G$) of the FET.}
+
+\end{figure}
+
+\end{document}
