@@ -7,3 +7,4 @@ All the project files related to the development of a power amplifier, based on 
 2. [AC Analysis](https://nbviewer.jupyter.org/github/bimalka98/Power-Amplifier/blob/main/02%20AC%20Analysis/Report/A02_180631J.pdf)
 3. [Power Analysis](https://nbviewer.jupyter.org/github/bimalka98/Power-Amplifier/blob/main/03%20Power%20Analysis/Report/A03_180631J.pdf)
 4. [Amplifier Design](https://nbviewer.jupyter.org/github/bimalka98/Power-Amplifier/blob/main/04%20Amplifier%20Design/LaTeX%20Report/A04_180631J.pdf)
+5. [DC-DC Converter Analysis](https://nbviewer.jupyter.org/github/bimalka98/Power-Amplifier/blob/main/05%20DC-DC%20Converter%20Analysis/LaTeX%20Report/A05_180631J.pdf)
