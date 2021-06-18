@@ -1,0 +1,69 @@
+\begin{document}
+	\begin{center}
+		{\large \textbf{ASSIGNMENT 01 – DC Analysis}}\\
+		Thalagala B.P.\hspace{0.5cm} 180631J
+	\end{center}
+	\hrule
+
+\section*{Q1}
+\paragraph*{Stage 1} \textit{Common Emitter Configuration}: Emitter terminal is common to the both input and output signals and input is applied to the base(through coupling capacitor) and output is taken at the collector terminal(through another coupling capacitor).
+
+\paragraph*{Stage 2} \textit{Common Collector Configuration/emitter-follower}: Input signal is applied to the base terminal (through a coupling capacitor)  and output signal is taken at the emitter terminal.
+
+\section*{Q2}
+By applying Kirchhoff's voltage low to the \textbf{\textit{collector-emitter circuit}},
+\[VCC = I_{C_1}.R_{C_1} + V_{CE_1} + I_{E_1}.R_{E_1}\]
+Rearranging,
+\[	 V_{CE_1}  = VCC -\left(I_{C_1}.R_{C_1} + I_{E_1}.R_{E_1} \right) \]
+
+\section*{Q3}
+
+Since, $I_{C_1} = \beta_1 I_{B_1}$ and $I_{E_1} = I_{C_1} + I_{B_1}$.
+
+\[
+\begin{split}
+	V_{CE_1}  &= VCC -\left(I_{C_1}.R_{C_1} + I_{E_1}.R_{E_1} \right)\\
+	&= VCC -\left[\beta_1 I_{B_1}.R_{C_1} + \left(I_{C_1} + I_{B_1} \right).R_{E_1} \right]\\
+	&= VCC -\left[\beta_1 I_{B_1}.R_{C_1} + \left( \beta_1 I_{B_1} + I_{B_1} \right).R_{E_1} \right]\\
+	& =  VCC -I_{B_1}.\left[\beta_1R_{C_1} + \left(\beta_1+1\right)R_{E_1} \right]
+\end{split}
+\]
+
+Using the approximation $I_{E_1} \approx I_{C_1}$ as $I_{B_1} \ll I_{C_1}$, the above expression can also be written as follows by replacing $\beta_1 +1 ~by ~\beta_1$ in practical situations.
+
+\[ V_{CE_1} =  VCC -\beta_1I_{B_1}.\left[R_{C_1} + R_{E_1} \right] \]
+
+
+\section*{Q4}
+%Theveninizing the bias circuit and applying Kirchhoff’s voltage law to the\textit{\textbf{ base-emitter circuit}}. Let Thevenin's equivalent voltage and impedance be $V_{TH_1}$ and $R_{TH_1}$ for the $Q_1$.
+%
+%\[ R_{TH_1} = \frac{R_{B_1}.R_{B_2}}{R_{B_1}+R_{B_2}} \hspace{1cm}and \hspace{1cm} V_{TH_1} =  \left(\frac{R_{B_2}}{R_{B_1}+R_{B_2}}\right).VCC\]
+By applying Kirchhoff's current low, \[I_{R_{B_1}} = I_{R_{B_2}}+I_{B_1}\]
+By applying Kirchhoff's voltage low,
+\[ VCC = I_{R_{B_1}}.R_{B_1} + I_{R_{B_2}}.R_{B_2} \]
+
+\section*{Q5}
+By applying Kirchhoff's voltage low to the \textbf{\textit{collector-emitter circuit}},
+\[VCC = V_{CE_2} + I_{E_2}.R_L\]
+Rearranging, \[ V_{CE_2} = VCC -  I_{E_2}.R_L \]
+
+Since, $I_{C_2} = \beta_2 I_{B_2}$ and $I_{E_2} = I_{C_2} + I_{B_2}$. Then,
+$ V_{CE_2} = VCC -  \left(\beta_2+1\right).I_{B_2}.R_L $\\
+
+Using the approximation $I_{E_2} \approx I_{C_2}$ as $I_{B_2} \ll I_{C_2}$, the above expression can also be written as follows in practical situations.
+\[ V_{CE_2} = VCC -  \beta_2.I_{B_2}.R_L \]
+
+By applying Kirchhoff's current low, \[I_{R_{B_3}} = I_{R_{B_4}}+I_{B_2}\]
+By applying Kirchhoff's voltage low,
+\[ VCC = I_{R_{B_3}}.R_{B_3} + I_{R_{B_4}}.R_{B_4} \]
+
+\section*{Q6}
+
+Let  the total power consumed by the amplifier circuit be $P_{total}$ and total current drained by the amplifier circuit from the source be $I_{total}$. Then,
+\[
+\begin{split}
+	P_{total} &= VCC.I_{total}\\
+	&= VCC. \left[  I_{R_{B_1}}+  I_{R_{B_3}}+ I_{C_1}+ I_{C_2}\right]
+\end{split}
+\]
+\end{document}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>new</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+</head>
+<body>
+<p><span><strong>ASSIGNMENT 01 – DC Analysis</strong></span><br />
+Thalagala B.P. 180631J</p>
+<hr />
+<h1 id="q1" class="unnumbered">Q1</h1>
+<h4 id="stage-1" class="unnumbered">Stage 1</h4>
+<p><em>Common Emitter Configuration</em>: Emitter terminal is common to the both input and output signals and input is applied to the base(through coupling capacitor) and output is taken at the collector terminal(through another coupling capacitor).</p>
+<h4 id="stage-2" class="unnumbered">Stage 2</h4>
+<p><em>Common Collector Configuration/emitter-follower</em>: Input signal is applied to the base terminal (through a coupling capacitor) and output signal is taken at the emitter terminal.</p>
+<h1 id="q2" class="unnumbered">Q2</h1>
+<p>By applying Kirchhoff’s voltage low to the <strong><em>collector-emitter circuit</em></strong>, <br /><span class="math display"><em>V</em><em>C</em><em>C</em> = <em>I</em><sub><em>C</em><sub>1</sub></sub>.<em>R</em><sub><em>C</em><sub>1</sub></sub> + <em>V</em><sub><em>C</em><em>E</em><sub>1</sub></sub> + <em>I</em><sub><em>E</em><sub>1</sub></sub>.<em>R</em><sub><em>E</em><sub>1</sub></sub></span><br /> Rearranging, <br /><span class="math display"><em>V</em><sub><em>C</em><em>E</em><sub>1</sub></sub> = <em>V</em><em>C</em><em>C</em> − (<em>I</em><sub><em>C</em><sub>1</sub></sub>.<em>R</em><sub><em>C</em><sub>1</sub></sub>+<em>I</em><sub><em>E</em><sub>1</sub></sub>.<em>R</em><sub><em>E</em><sub>1</sub></sub>)</span><br /></p>
+<h1 id="q3" class="unnumbered">Q3</h1>
+<p>Since, <span class="math inline"><em>I</em><sub><em>C</em><sub>1</sub></sub> = <em>β</em><sub>1</sub><em>I</em><sub><em>B</em><sub>1</sub></sub></span> and <span class="math inline"><em>I</em><sub><em>E</em><sub>1</sub></sub> = <em>I</em><sub><em>C</em><sub>1</sub></sub> + <em>I</em><sub><em>B</em><sub>1</sub></sub></span>.</p>
+<p><br /><span class="math display">$$\begin{split}
+    V_{CE_1}  &amp;= VCC -\left(I_{C_1}.R_{C_1} + I_{E_1}.R_{E_1} \right)\\
+    &amp;= VCC -\left[\beta_1 I_{B_1}.R_{C_1} + \left(I_{C_1} + I_{B_1} \right).R_{E_1} \right]\\
+    &amp;= VCC -\left[\beta_1 I_{B_1}.R_{C_1} + \left( \beta_1 I_{B_1} + I_{B_1} \right).R_{E_1} \right]\\
+    &amp; =  VCC -I_{B_1}.\left[\beta_1R_{C_1} + \left(\beta_1+1\right)R_{E_1} \right]
+\end{split}$$</span><br /></p>
+<p>Using the approximation <span class="math inline"><em>I</em><sub><em>E</em><sub>1</sub></sub> ≈ <em>I</em><sub><em>C</em><sub>1</sub></sub></span> as <span class="math inline"><em>I</em><sub><em>B</em><sub>1</sub></sub> ≪ <em>I</em><sub><em>C</em><sub>1</sub></sub></span>, the above expression can also be written as follows by replacing <span class="math inline"><em>β</em><sub>1</sub> + 1 <em>b</em><em>y</em> <em>β</em><sub>1</sub></span> in practical situations.</p>
+<p><br /><span class="math display"><em>V</em><sub><em>C</em><em>E</em><sub>1</sub></sub> = <em>V</em><em>C</em><em>C</em> − <em>β</em><sub>1</sub><em>I</em><sub><em>B</em><sub>1</sub></sub>.[<em>R</em><sub><em>C</em><sub>1</sub></sub>+<em>R</em><sub><em>E</em><sub>1</sub></sub>]</span><br /></p>
+<h1 id="q4" class="unnumbered">Q4</h1>
+<p>By applying Kirchhoff’s current low, <br /><span class="math display"><em>I</em><sub><em>R</em><sub><em>B</em><sub>1</sub></sub></sub> = <em>I</em><sub><em>R</em><sub><em>B</em><sub>2</sub></sub></sub> + <em>I</em><sub><em>B</em><sub>1</sub></sub></span><br /> By applying Kirchhoff’s voltage low, <br /><span class="math display"><em>V</em><em>C</em><em>C</em> = <em>I</em><sub><em>R</em><sub><em>B</em><sub>1</sub></sub></sub>.<em>R</em><sub><em>B</em><sub>1</sub></sub> + <em>I</em><sub><em>R</em><sub><em>B</em><sub>2</sub></sub></sub>.<em>R</em><sub><em>B</em><sub>2</sub></sub></span><br /></p>
+<h1 id="q5" class="unnumbered">Q5</h1>
+<p>By applying Kirchhoff’s voltage low to the <strong><em>collector-emitter circuit</em></strong>, <br /><span class="math display"><em>V</em><em>C</em><em>C</em> = <em>V</em><sub><em>C</em><em>E</em><sub>2</sub></sub> + <em>I</em><sub><em>E</em><sub>2</sub></sub>.<em>R</em><sub><em>L</em></sub></span><br /> Rearranging, <br /><span class="math display"><em>V</em><sub><em>C</em><em>E</em><sub>2</sub></sub> = <em>V</em><em>C</em><em>C</em> − <em>I</em><sub><em>E</em><sub>2</sub></sub>.<em>R</em><sub><em>L</em></sub></span><br /></p>
+<p>Since, <span class="math inline"><em>I</em><sub><em>C</em><sub>2</sub></sub> = <em>β</em><sub>2</sub><em>I</em><sub><em>B</em><sub>2</sub></sub></span> and <span class="math inline"><em>I</em><sub><em>E</em><sub>2</sub></sub> = <em>I</em><sub><em>C</em><sub>2</sub></sub> + <em>I</em><sub><em>B</em><sub>2</sub></sub></span>. Then, <span class="math inline"><em>V</em><sub><em>C</em><em>E</em><sub>2</sub></sub> = <em>V</em><em>C</em><em>C</em> − (<em>β</em><sub>2</sub>+1).<em>I</em><sub><em>B</em><sub>2</sub></sub>.<em>R</em><sub><em>L</em></sub></span><br />
+Using the approximation <span class="math inline"><em>I</em><sub><em>E</em><sub>2</sub></sub> ≈ <em>I</em><sub><em>C</em><sub>2</sub></sub></span> as <span class="math inline"><em>I</em><sub><em>B</em><sub>2</sub></sub> ≪ <em>I</em><sub><em>C</em><sub>2</sub></sub></span>, the above expression can also be written as follows in practical situations. <br /><span class="math display"><em>V</em><sub><em>C</em><em>E</em><sub>2</sub></sub> = <em>V</em><em>C</em><em>C</em> − <em>β</em><sub>2</sub>.<em>I</em><sub><em>B</em><sub>2</sub></sub>.<em>R</em><sub><em>L</em></sub></span><br /></p>
+<p>By applying Kirchhoff’s current low, <br /><span class="math display"><em>I</em><sub><em>R</em><sub><em>B</em><sub>3</sub></sub></sub> = <em>I</em><sub><em>R</em><sub><em>B</em><sub>4</sub></sub></sub> + <em>I</em><sub><em>B</em><sub>2</sub></sub></span><br /> By applying Kirchhoff’s voltage low, <br /><span class="math display"><em>V</em><em>C</em><em>C</em> = <em>I</em><sub><em>R</em><sub><em>B</em><sub>3</sub></sub></sub>.<em>R</em><sub><em>B</em><sub>3</sub></sub> + <em>I</em><sub><em>R</em><sub><em>B</em><sub>4</sub></sub></sub>.<em>R</em><sub><em>B</em><sub>4</sub></sub></span><br /></p>
+<h1 id="q6" class="unnumbered">Q6</h1>
+<p>Let the total power consumed by the amplifier circuit be <span class="math inline"><em>P</em><sub><em>t</em><em>o</em><em>t</em><em>a</em><em>l</em></sub></span> and total current drained by the amplifier circuit from the source be <span class="math inline"><em>I</em><sub><em>t</em><em>o</em><em>t</em><em>a</em><em>l</em></sub></span>. Then, <br /><span class="math display">$$\begin{split}
+    P_{total} &amp;= VCC.I_{total}\\
+    &amp;= VCC. \left[  I_{R_{B_1}}+  I_{R_{B_3}}+ I_{C_1}+ I_{C_2}\right]
+\end{split}$$</span><br /></p>
+</body>
+</html>
