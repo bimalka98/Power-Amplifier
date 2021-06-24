@@ -2,7 +2,7 @@
 
 ## *Importing Third-Party Intrinsic Models*
 
-### To import a third-party intrinsic spice model
+***To import a third-party intrinsic spice model***
 
 1. Download the spice model file from the manufacturer’s website.  Make sure to note the file location on the hard-drive.(save it in a .txt file)
 2. Add the following spice directive to the LTspice simulation file 
@@ -20,3 +20,15 @@
 ### Note: An absolute path name <path> can be omitted in the .include directive only if the file is located in:
 * <LTspiceIV> \lib\sub 
 * The directory that contains the simulation file
+
+
+## LTspice: Parametric Plots (Changing independant variable from time to some other variable)
+
+[Reference](https://www.analog.com/en/technical-articles/ltspice-parametric-plots.html)
+
+***To change the default settings(time variable) of the X-axis:***
+
+1. Click on a node/component to plot its voltage/current in the waveform viewer.
+2. Move the cursor to the horizontal axis of the waveform viewer (the cursor will turn into a ruler) and left-click.
+3. In the Horizontal Axis dialog, enter an expression for the “Quantity Plotted.
+4. Click OK.
