@@ -22,7 +22,7 @@
 * The directory that contains the simulation file
 
 
-## LTspice: Parametric Plots (Changing independant variable from time to some other variable)
+## *LTspice: Parametric Plots (Changing independant variable from time to some other variable)*
 
 [Reference](https://www.analog.com/en/technical-articles/ltspice-parametric-plots.html)
 
@@ -33,7 +33,7 @@
 3. In the Horizontal Axis dialog, enter an expression for the “Quantity Plotted.
 4. Click OK.
 
-## Measuring values using .meas : output is saved to the *`.log`*  file
+## *Measuring values using .meas : output is saved to the *`.log`*  file*
 
 [Reference](https://electronics.stackexchange.com/questions/562475/find-min-and-max-of-magnitude-ltspice)
 
