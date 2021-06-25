@@ -32,3 +32,14 @@
 2. Move the cursor to the horizontal axis of the waveform viewer (the cursor will turn into a ruler) and left-click.
 3. In the Horizontal Axis dialog, enter an expression for the “Quantity Plotted.
 4. Click OK.
+
+## Measuring values using .meas : output is saved to the *`.log`*  file
+
+```
+.meas vmax max v(vout)    // find maximum value within the tran time
+.meas vmin min v(vout)    // find minimum value within the tran time
+
+
+.meas vmax find abs(v(vout)) at t1    // if the period of the waveform is known
+.meas vmin find abs(v(vout)) at t2    
+```
