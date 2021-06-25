@@ -1,6 +1,8 @@
-*Importing Third-Party SPICE Models Presented by Thomas Mosteller ADI FAE [full pdf](https://www.ieee.li/pdf/viewgraphs/ltspice_importing_third_party_models.pdf)*
+# ※ *Used features of LTspice* ※
 
-## *Importing Third-Party Intrinsic Models*
+## ❄ *Importing Third-Party Intrinsic Models* 
+
+[Reference](https://www.ieee.li/pdf/viewgraphs/ltspice_importing_third_party_models.pdf)
 
 ***To import a third-party intrinsic spice model***
 
@@ -21,8 +23,9 @@
 * <LTspiceIV> \lib\sub 
 * The directory that contains the simulation file
 
+---
 
-## *LTspice: Parametric Plots (Changing independant variable from time to some other variable)*
+## ❄ *LTspice: Parametric Plots (Changing independant variable from time to some other variable)*
 
 [Reference](https://www.analog.com/en/technical-articles/ltspice-parametric-plots.html)
 
@@ -33,7 +36,9 @@
 3. In the Horizontal Axis dialog, enter an expression for the “Quantity Plotted.
 4. Click OK.
 
-## *Measuring values using .meas : output is saved to the *`.log`*  file*
+---
+
+## ❄ *Measuring values using .meas : output is saved to the *`.log`*  file*
 
 [Reference](https://electronics.stackexchange.com/questions/562475/find-min-and-max-of-magnitude-ltspice)
 
