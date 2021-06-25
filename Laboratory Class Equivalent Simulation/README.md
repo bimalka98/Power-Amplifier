@@ -35,6 +35,8 @@
 
 ## Measuring values using .meas : output is saved to the *`.log`*  file
 
+[Reference](https://electronics.stackexchange.com/questions/562475/find-min-and-max-of-magnitude-ltspice)
+
 ```
 .meas vmax max v(vout)    // find maximum value within the tran time
 .meas vmin min v(vout)    // find minimum value within the tran time
