@@ -16,8 +16,9 @@ A two stage transistor amplifier
 3. [Power Analysis](https://nbviewer.jupyter.org/github/bimalka98/Power-Amplifier/blob/main/03%20Power%20Analysis/Report/A03_180631J.pdf)
 4. [Amplifier Design-Calculations](https://nbviewer.jupyter.org/github/bimalka98/Power-Amplifier/blob/main/04%20Amplifier%20Design/LaTeX%20Report/A04_180631J.pdf)
 5. [DC-DC Converter Analysis](https://nbviewer.jupyter.org/github/bimalka98/Power-Amplifier/blob/main/05%20DC-DC%20Converter%20Analysis/LaTeX%20Report/A05_180631J.pdf)
+6. [Laboratory Class Equivalent Simulation](https://nbviewer.jupyter.org/github/bimalka98/Power-Amplifier/blob/main/Laboratory%20Class%20Equivalent%20Simulation/EN2110Lab_G37_180079_180437_180631.pdf)
 
-## *Simulator: LTSpice*
+## *Simulator: [LTSpice](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html)*
 
 * Plot formatting: Tools -> Control Panel -> Waveforms
 * Other necessary features of the LTSpice is explained in the [simulation directory](Laboratory%20Class%20Equivalent%20Simulation) .
