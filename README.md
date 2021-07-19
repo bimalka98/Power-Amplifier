@@ -30,3 +30,7 @@ A two stage transistor amplifier
 1. [Caldera H. D. J. 180079X](https://github.com/DilmiCaldera)
 2. [Oshan J. W. P. 180437U](https://github.com/OshanJayawardana)
 3. [Thalagala B.P. 180631J](https://github.com/bimalka98)
+
+## *License*
+
+[GNU Affero General Public License v3.0](LICENSE)
